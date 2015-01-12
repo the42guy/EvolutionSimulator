@@ -1,0 +1,76 @@
+/* I don't think we need this. Good to separate the different gene combinations though. Can be used to determine gene combos later */
+/* Taken from MonoHybrid class, method fuseTwo() */
+        for(int i = 0; i < 4; i++) {
+            if (Character.isUpperCase(offSpringString[i].charAt(0)) && Character.isUpperCase(offSpringString[i].charAt(1))) {
+                System.out.println(offSpringString[i]);
+            }
+        }
+        for(int i = 0; i < 4; i++) {
+            if (Character.isUpperCase(offSpringString[i].charAt(0)) && Character.isLowerCase(offSpringString[i].charAt(1))) {
+                System.out.println(offSpringString[i]);
+            }
+        }
+        for(int i = 0; i < 4; i++) {
+            if (Character.isLowerCase(offSpringString[i].charAt(0)) && Character.isLowerCase(offSpringString[i].charAt(1))) {
+                System.out.println(offSpringString[i]);
+            }
+        }
+
+        /*Removed from MonoHybrid class. Buggy, difficult to maintain*/
+
+         /*for (int z = 0; z < 4; z++) {                                                                                   //Iterates over the offSpringString count
+                    for (int gameteFuseBothWith0 = 2; gameteFuseBothWith0 < 4; gameteFuseBothWith0++) {                         //Iterates over both genes of p2
+                        offSpring[z] = new MonoCreature(gamete[0], gamete[gameteFuseBothWith0]);                                //Creates two new MonoCreatures which are a result of gene1 of parent1 and gene1,2 of parent2
+                        z++;
+                    }
+                    for (int gameteFuseBothWith1 = 2; gameteFuseBothWith1 < 4; gameteFuseBothWith1++) {                         //Iterates over both genes of p2
+                        offSpring[z] = new MonoCreature(gamete[1], gamete[gameteFuseBothWith1]);                                //Creates two new MonoCreatures which are a result of gene2 of p1 and g1,2 of p2
+                        z++;
+                    }
+                }*/
+
+
+                 /**
+                  * @javadoc
+                  * Working of this method:
+                  *    A number of generations are provided. Last generation's creatures are taken from the ArrayList (monoCreaturesTotalList).
+                  *    These creatures act as parents for this generation/iteration. Total size of this ArrayList of the parents are taken.
+                  *    Two ints, one for each parent, are created. They are used to iterate over the creatures of that generation.
+                  *    MonoCreatures a and b are two parents from each for-loop. They are independent of each other. b increments first. When
+                  *    all the third-level iterations in one second-level iterations run out, naturally the next second-level iteration
+                  *    takes place. Inside the third-level for-loop, the three if-else-if conditions (two, rather) determine whether to fuse
+                  *    the two creatures or not. It is determined by two conditions in total: if the creatures have not fused with each other, and they are not the
+                  *    same, only then can they fuse.
+                  *
+                  * FAQs:
+                  * Q: Why is hasNotFused method not working?
+                  * A: It works now. The issue was not with the method, but that the same creature fused with itself whenever the
+                  *    two for-loops came on the same iteration (1 and 1, 2 and 2 and so on...)
+                  * Q: What is lastGenCreatures arrayList?
+                  * A: Rather self-explanatory. They are the last gen's creatures which will act as this gen's parents.
+                  * */
+                 int generation;
+                 int maxGen = 3;
+                 ArrayList<MonoCreature> lastGenCreatures;
+                 for(generation = 1; generation < maxGen; generation++) {                                                             //The generations...
+                     lastGenCreatures = monoCreaturesTotalList.get(generation - 1);
+                     int totalLengthOfPreviousGeneration = lastGenCreatures.size();
+                     int parentOneCreatureInArray;
+                     int parentTwoCreatureInArray;
+                     for(parentOneCreatureInArray = 0; parentOneCreatureInArray < totalLengthOfPreviousGeneration; parentOneCreatureInArray++) {
+                         MonoCreature a = lastGenCreatures.get(parentOneCreatureInArray);
+                         for(parentTwoCreatureInArray = 0; parentTwoCreatureInArray < totalLengthOfPreviousGeneration; parentTwoCreatureInArray++) {
+                             MonoCreature b = lastGenCreatures.get(parentTwoCreatureInArray);
+                             if((a.hasNotFused(b)) && (a != b)) {
+                                 System.out.println("a and b have not fused, for a = " + a + " and b = " + b);
+                                 System.out.println("Fusing them...");
+                                 this.fuseTwo(a, b);
+                             } else if(a == b) {
+                                 System.out.println("a and b are same");
+                             } else {
+                                 System.out.println("a and b have already fused");
+                             }
+                         }
+                     }
+                     System.out.println("Finished generation " + generation + " with " + bufferMC.size() + " creatures, and a total of " + totalCreaturesEver());
+                     this.addToList();
