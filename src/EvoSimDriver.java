@@ -19,7 +19,7 @@ public class EvoSimDriver {
         } catch (IllegalArgumentException e) {
             System.out.println("Wrong genotype entered!");
         } finally {
-            System.out.println("\n\nEnd of program");
+            System.out.println("\n\n\nEnd of program");
         }
     }
 }
