@@ -5,54 +5,87 @@ import java.util.ArrayList;
  */
 public class MonoCreature {
     private String dominantTrait;                                                                                       //The dom trait for the creature
-    private String genotypeCharacter;                                                                                   //The character representing the gene
-    private String geneMakeup;                                                                                          //The make-up of the gene
-    ArrayList<Character> genes = new ArrayList<Character>(2);
-    private char gamete1, gamete2;
+    private char genotypeCharacter;                                                                                   //The character representing the gene
+    ArrayList<String> genes = new ArrayList<String>(2);
+    private char charGamete1, charGamete2;
+    private String gamete1, gamete2;
     private String geneStructure;
     ArrayList<MonoCreature> fusedWith = new ArrayList<MonoCreature>();
+    boolean allVerified = false;
 
-    public MonoCreature(char characterGene1, char characterGene2) {
+    public MonoCreature(String characterGene1, String characterGene2) {
         this.genes.add(characterGene1);
         this.genes.add(characterGene2);
-        if (!geneIntegrityCheck()) {
+        allVerified = this.geneIntegrityCheck();
+        if (!allVerified) {                                                                                             //if allVerified is false, then throw exception
             throw new IllegalArgumentException("Genotype error");
         }
         this.setDominantTrait();
         this.createGametes();
+        geneStructure = this.createGeneStructure();
+        dominantTrait = this.setDominantTrait();
+        genotypeCharacter = this.setGenotypeCharacter();
     }
-
     private String createGeneStructure() {
-        String geneStructure;
+        String geneStructure = "";
         if (gamete1 == gamete2) {
             geneStructure = gamete1.toString();
+        } else if (Character.isUpperCase(charGamete1)) {
+            geneStructure = gamete1 + gamete2;
+        } else if (Character.isUpperCase(charGamete2)) {
+            geneStructure = gamete2 + gamete1;
         }
+        return geneStructure;
     }
 
+    protected String getGeneStructure() {
+        return geneStructure;
+    }
     private boolean geneIntegrityCheck() {                                                                                       //Checks integrity of genes
         boolean isOK = false;
         int allVerified = 0;
-        String gene1 = genes.get(0).toString();
-        String gene2 = genes.get(1).toString();
-        System.out.println(gene1 + gene2);
+        String gene1 = genes.get(0);
+        String gene2 = genes.get(1);
+        if (gene1.equalsIgnoreCase(gene2)) {
+            allVerified++;
+        }
+        if ((gene1.length() == 1) && (gene2.length() == 1)) {
+            allVerified++;
+        }
+        if (allVerified == 2)
+            isOK = true;
         return isOK;
     }
-    private void setDominantTrait() {                                                                                   //Sets the dominant trait
-        char domTrait;
+
+    private char setGenotypeCharacter() {
+        char genotype = ' ';
+        if (allVerified) {
+            genotype = gamete1.charAt(0);
+        }
+        return genotype;
+    }
+
+    private String setDominantTrait() {                                                                                   //Sets the dominant trait
+        String domTrait = "";
         for(int i = 0; i < 2; i++) {
-            char geneThisIteration = this.genes.get(0);
-            if(Character.isUpperCase(geneThisIteration)) {
+            String geneThisIteration = this.genes.get(i);
+            char geneThisIter = geneThisIteration.charAt(0);
+            if (Character.isUpperCase(geneThisIter)) {
                 domTrait = geneThisIteration;
             }
         }
+        return domTrait;
+
     }
     private void createGametes() {                                                                                      //Initializes the gametes for later use
         gamete1 = genes.get(0);
         gamete2 = genes.get(1);
+        charGamete1 = gamete1.charAt(0);
+        charGamete1 = gamete2.charAt(0);
     }
 
-    protected char getGamete(int whichOne) {                                                                          //Gets the required gamete
-        char gamete = ' ';
+    protected String getGamete(int whichOne) {                                                                          //Gets the required gamete
+        String gamete = "";
         if((whichOne==0) || (whichOne==1)) {
             gamete = genes.get(whichOne);
         }
@@ -62,7 +95,6 @@ public class MonoCreature {
     protected void fusedWith(MonoCreature aCreature) {                                                                  //Adds the creature to the ArrayList
         this.fusedWith.add(aCreature);
     }
-
     protected boolean hasFused(MonoCreature theCreatureToCheck) {                                                   //Gets the status of fusion with the given creature
         boolean hasFused = false;
         if (fusedWith.contains(theCreatureToCheck)) {
@@ -70,7 +102,6 @@ public class MonoCreature {
         }
         return hasFused;
     }
-
     protected boolean hasNotFused(MonoCreature theCreatureToCheck) {
         boolean hasNotFused = false;
         if (fusedWith.contains(theCreatureToCheck)) {

@@ -38,7 +38,7 @@ public class MonoHybrid {
          *              In each iteration, it will add a gamete to the array by the method (getGamete(int whichOne))
          *      Now four creatures are created via these four gametes.
          * */
-        char[] gamete = new char[4];
+        String[] gamete = new String[4];
         MonoCreature[] offSpring = new MonoCreature[4];                                                                 //Temporarily holds the offspring creatures
         if (parent1.hasFused(parent2)) {
             System.out.println("Parents have already fused.");
@@ -67,9 +67,9 @@ public class MonoHybrid {
             //4 off-springs from 2 parents created. Now send them to bufferMC arrayList.
             for (int childInt = 0; childInt < 4; childInt++) {
                 System.out.println("for " + childInt);
-                System.out.println("Adding " + offSpring[childInt].geneMakeup() + " to buffer AL");
+                System.out.println("Adding " + offSpring[childInt].getGeneStructure() + " to buffer AL");
                 bufferMC.add(offSpring[childInt]);
-                System.out.println(offSpring[childInt].geneMakeup() + " added\nTotal length of the buffer array-list: " + bufferMC.size() + "\n");
+                System.out.println(offSpring[childInt].getGeneStructure() + " added\nTotal length of the buffer array-list: " + bufferMC.size() + "\n");
             }
             //this.debugMC();
             parent1.fusedWith(parent2);                                                                                     //Adds parents to each others' lists
