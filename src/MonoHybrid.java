@@ -11,7 +11,8 @@ public class MonoHybrid {
     public MonoHybrid(int generations) {
         this.maxGenerations = generations;
     }
-    protected void seedParents(MonoCreature mc1, MonoCreature mc2) {
+
+    protected void seedParents(MonoCreature mc1, MonoCreature mc2) {                                                    //initializes the two seed creatures
         seeds[0] = mc1;
         seeds[1] = mc2;
         bufferList.add(seeds[0]);
