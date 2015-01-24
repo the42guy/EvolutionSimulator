@@ -11,7 +11,26 @@ public class MonoCreature {
     private String gamete1, gamete2;
 
     public MonoCreature(String characterGene1, String characterGene2) {
+        this.genes.add(characterGene1);
+        this.genes.add(characterGene2);
+    }
 
+    private boolean geneCheck() {                                                                                       //Checks integrity of genes
+        boolean isOK = false;
+        int allVerified = 0;
+        for(int i = 0; i < 2; i++) {                                                                                    //Iterates over two genes and increases verif count for each success
+            int length = genes.get(i).length();
+            if(length == 1) {
+                allVerified++;
+            }
+        }
+        if(genes.get(0).equalsIgnoreCase(genes.get(1))) {                                                               //If both are equal, another increase
+            allVerified++;
+        }
+        if(allVerified == 3) {                                                                                          //makes it true
+            isOK = true;
+        }
+        return isOK;
     }
 }
 
