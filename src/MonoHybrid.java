@@ -38,7 +38,7 @@ public class MonoHybrid {
          *              In each iteration, it will add a gamete to the array by the method (getGamete(int whichOne))
          *      Now four creatures are created via these four gametes.
          * */
-        String[] gamete = new String[4];
+        char[] gamete = new char[4];
         MonoCreature[] offSpring = new MonoCreature[4];                                                                 //Temporarily holds the offspring creatures
         if (parent1.hasFused(parent2)) {
             System.out.println("Parents have already fused.");

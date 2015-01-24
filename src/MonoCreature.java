@@ -8,18 +8,28 @@ public class MonoCreature {
     private String genotypeCharacter;                                                                                   //The character representing the gene
     private String geneMakeup;                                                                                          //The make-up of the gene
     ArrayList<Character> genes = new ArrayList<Character>(2);
-    private String gamete1, gamete2;
+    private char gamete1, gamete2;
+    private String geneStructure;
     ArrayList<MonoCreature> fusedWith = new ArrayList<MonoCreature>();
 
     public MonoCreature(char characterGene1, char characterGene2) {
         this.genes.add(characterGene1);
         this.genes.add(characterGene2);
-        if(!geneCheck()) {
+        if (!geneIntegrityCheck()) {
             throw new IllegalArgumentException("Genotype error");
         }
         this.setDominantTrait();
+        this.createGametes();
     }
-    private boolean geneCheck() {                                                                                       //Checks integrity of genes
+
+    private String createGeneStructure() {
+        String geneStructure;
+        if (gamete1 == gamete2) {
+            geneStructure = gamete1.toString();
+        }
+    }
+
+    private boolean geneIntegrityCheck() {                                                                                       //Checks integrity of genes
         boolean isOK = false;
         int allVerified = 0;
         String gene1 = genes.get(0).toString();
@@ -37,18 +47,36 @@ public class MonoCreature {
         }
     }
     private void createGametes() {                                                                                      //Initializes the gametes for later use
-        gamete1 = genes.get(0).toString();
-        gamete2 = genes.get(1).toString();
+        gamete1 = genes.get(0);
+        gamete2 = genes.get(1);
     }
-    protected String getGamete(int whichOne) {                                                                          //Gets the required gamete
-        String gamete = "";
+
+    protected char getGamete(int whichOne) {                                                                          //Gets the required gamete
+        char gamete = ' ';
         if((whichOne==0) || (whichOne==1)) {
-            gamete = genes.get(whichOne).toString();
+            gamete = genes.get(whichOne);
         }
         return gamete;
     }
-    protected void fusedWith(MonoCreature aCreature) {
+
+    protected void fusedWith(MonoCreature aCreature) {                                                                  //Adds the creature to the ArrayList
         this.fusedWith.add(aCreature);
+    }
+
+    protected boolean hasFused(MonoCreature theCreatureToCheck) {                                                   //Gets the status of fusion with the given creature
+        boolean hasFused = false;
+        if (fusedWith.contains(theCreatureToCheck)) {
+            hasFused = true;
+        }
+        return hasFused;
+    }
+
+    protected boolean hasNotFused(MonoCreature theCreatureToCheck) {
+        boolean hasNotFused = false;
+        if (fusedWith.contains(theCreatureToCheck)) {
+            hasNotFused = true;
+        }
+        return hasNotFused;
     }
 }
 
