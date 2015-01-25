@@ -34,7 +34,17 @@ public class MonoHybrid {
         bufferList.add(creatureFour);
     }
     private void fuseTwo(MonoCreature parentOne, MonoCreature parentTwo) {                                              //fuses two parents to create four off-springs
-        ArrayList<String> gametes = new ArrayList<>(4);                                                                 // Replaced String Array with Array list
+        /**@javadoc
+         * Fuses two parents' gametes to obtain 4 off-springs.
+         * Working:
+         *      Takes two MonoCreatures as arguments
+         *      Creates two ArrayLists, one for holding the gametes, other for the off-springs (ArrayList here contributed by @flamingrush2)
+         *      Then initializes the gametes ArrayList by enquiring about each gamete through the getGamete(int whichGamete) method
+         *      Now four creatures are created via these four gametes, and simultaneously added to the offSpring ArrayList
+         *      This ArrayList is then sent to buffer ArrayList
+         *      total creature count is increased by 4 each run
+         * */
+        ArrayList<String> gametes = new ArrayList<>(4);
         ArrayList<MonoCreature> offSpring = new ArrayList<>(4);
         for (int counter = 0; counter < 4; counter++) {
             switch (counter) {
