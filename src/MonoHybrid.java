@@ -42,6 +42,7 @@ public class MonoHybrid {
          *      Then initializes the gametes ArrayList by enquiring about each gamete through the getGamete(int whichGamete) method
          *      Now four creatures are created via these four gametes, and simultaneously added to the offSpring ArrayList
          *      This ArrayList is then sent to buffer ArrayList
+         *      Both parent MonoCreatures get to add each other in their respective fused lists, to prevent future fuses
          *      total creature count is increased by 4 each run
          * */
         ArrayList<String> gametes = new ArrayList<>(4);
@@ -68,6 +69,12 @@ public class MonoHybrid {
         for (int i = 0; i < 4; i++) {
             addToBuffer(offSpring.get(i));
         }
+        parentOne.fusedWith(parentTwo);
+        parentTwo.fusedWith(parentOne);
         totalCreaturesTillNow += 4;
+    }
+
+    protected void generate() {
+        int f = this.maxGenerations;
     }
 }
