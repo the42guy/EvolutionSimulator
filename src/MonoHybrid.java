@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public class MonoHybrid {
     int maxGenerations;
     private MonoCreature[] seeds = new MonoCreature[2];
-    ArrayList<MonoCreature> bufferList = new ArrayList<MonoCreature>();
+    ArrayList<MonoCreature> bufferList = new ArrayList<>();
     ArrayList<ArrayList<MonoCreature>> totalList = new ArrayList<ArrayList<MonoCreature>>();
     public MonoHybrid(int generations) {
         this.maxGenerations = generations;
@@ -22,14 +22,19 @@ public class MonoHybrid {
         totalList.add(whichIndex, bufferList);
         bufferList.clear();
     }
-
     private void addToBuffer(MonoCreature aCreature) {                                                                  //adds the given creature to buffer
         bufferList.add(aCreature);
     }
 
+    private void addToBuffer(MonoCreature creatureOne, MonoCreature creatureTwo, MonoCreature creatureThree, MonoCreature creatureFour) {
+        bufferList.add(creatureOne);
+        bufferList.add(creatureTwo);
+        bufferList.add(creatureThree);
+        bufferList.add(creatureFour);
+    }
     private void fuseTwo(MonoCreature parentOne, MonoCreature parentTwo) {                                              //fuses two parents to create four off-springs
-        ArrayList<String> gametes = new ArrayList<String>(4);                                                   // Replaced String Array with Array list
-        ArrayList<MonoCreature> offSpring = new ArrayList<MonoCreature>(4);
+        ArrayList<String> gametes = new ArrayList<>(4);                                                                 // Replaced String Array with Array list
+        ArrayList<MonoCreature> offSpring = new ArrayList<>(4);
         for (int counter = 0; counter < 4; counter++) {
             switch (counter) {
                 case 0:
@@ -49,5 +54,8 @@ public class MonoHybrid {
         offSpring.add(new MonoCreature(gametes.get(0), gametes.get(3)));
         offSpring.add(new MonoCreature(gametes.get(1), gametes.get(2)));
         offSpring.add(new MonoCreature(gametes.get(1), gametes.get(3)));
+        for (int i = 0; i < 4; i++) {
+            addToBuffer(offSpring.get(i));
+        }
     }
 }
