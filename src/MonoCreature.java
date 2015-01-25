@@ -98,7 +98,8 @@ public class MonoCreature {
     protected void fusedWith(MonoCreature aCreature) {                                                                  //Adds the creature to the ArrayList
         this.fusedWith.add(aCreature);
     }
-    protected boolean hasFused(MonoCreature theCreatureToCheck) {                                                   //Gets the status of fusion with the given creature
+
+    protected boolean hasFused(MonoCreature theCreatureToCheck) {                                                       //Gets the status of fusion with the given creature
         boolean hasFused = false;
         if (fusedWith.contains(theCreatureToCheck)) {
             hasFused = true;
@@ -113,4 +114,3 @@ public class MonoCreature {
         return hasNotFused;
     }
 }
-

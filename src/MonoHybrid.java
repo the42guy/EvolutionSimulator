@@ -27,7 +27,27 @@ public class MonoHybrid {
         bufferList.add(aCreature);
     }
 
-    private void fuseTwo(MonoCreature parent1, MonoCreature parent2) {
-
+    private void fuseTwo(MonoCreature parentOne, MonoCreature parentTwo) {                                              //fuses two parents to create four off-springs
+        ArrayList<String> gametes = new ArrayList<String>(4);                                                   // Replaced String Array with Array list
+        ArrayList<MonoCreature> offSpring = new ArrayList<MonoCreature>(4);
+        for (int counter = 0; counter < 4; counter++) {
+            switch (counter) {
+                case 0:
+                case 1:
+                    gametes.add(counter, parentOne.getGamete(counter));
+                    break;
+                case 2:
+                case 3:
+                    gametes.add(counter, parentTwo.getGamete(counter - 2));
+                    break;
+                default:
+                    System.err.println("Error in Program.");
+                    throw new IllegalArgumentException("Error in Program.");
+            }
+        }
+        offSpring.add(new MonoCreature(gametes.get(0), gametes.get(2)));
+        offSpring.add(new MonoCreature(gametes.get(0), gametes.get(3)));
+        offSpring.add(new MonoCreature(gametes.get(1), gametes.get(2)));
+        offSpring.add(new MonoCreature(gametes.get(1), gametes.get(3)));
     }
 }
