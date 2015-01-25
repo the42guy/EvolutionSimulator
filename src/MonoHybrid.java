@@ -27,7 +27,7 @@ public class MonoHybrid {
         bufferList.add(aCreature);
     }
 
-    private void addToBuffer(MonoCreature creatureOne, MonoCreature creatureTwo, MonoCreature creatureThree, MonoCreature creatureFour) {
+    private void addToBuffer(MonoCreature creatureOne, MonoCreature creatureTwo, MonoCreature creatureThree, MonoCreature creatureFour) {   //possibly useless
         bufferList.add(creatureOne);
         bufferList.add(creatureTwo);
         bufferList.add(creatureThree);
@@ -75,6 +75,24 @@ public class MonoHybrid {
     }
 
     protected void generate() {
+        int generationCount;
         int f = this.maxGenerations;
+        ArrayList<MonoCreature> lastGenCreatures;
+        for (generationCount = 1; generationCount < f; generationCount++) {
+            lastGenCreatures = totalList.get(generationCount - 1);                                                      //totalList is an AL of ALs. So this returns an AL.
+            int totalLengthOfLastGen = lastGenCreatures.size();
+            int creatureOneLoc, creatureTwoLoc;
+            MonoCreature creatureOne, creatureTwo;
+            for (creatureOneLoc = 0; creatureOneLoc < totalLengthOfLastGen; creatureOneLoc++) {
+                creatureOne = lastGenCreatures.get(creatureOneLoc);
+                for (creatureTwoLoc = 0; creatureTwoLoc < totalLengthOfLastGen; creatureTwoLoc++) {
+                    creatureTwo = lastGenCreatures.get(creatureTwoLoc);
+                    if ((creatureOne.hasNotFused(creatureTwo)) && (creatureOne != creatureTwo)) {
+                        this.fuseTwo(creatureOne, creatureTwo);
+                    } //ends if
+                } //ends the loop for second level creatures
+            } //ends the loop for first level creatures
+        } //ends total loop
+        this.dumpBufferToTotalList(generationCount);
     }
 }
