@@ -8,6 +8,7 @@ public class MonoHybrid {
     private MonoCreature[] seeds = new MonoCreature[2];
     ArrayList<MonoCreature> bufferList = new ArrayList<>();
     ArrayList<ArrayList<MonoCreature>> totalList = new ArrayList<ArrayList<MonoCreature>>();
+    private int totalCreaturesTillNow = 0;
     public MonoHybrid(int generations) {
         this.maxGenerations = generations;
     }
@@ -57,5 +58,6 @@ public class MonoHybrid {
         for (int i = 0; i < 4; i++) {
             addToBuffer(offSpring.get(i));
         }
+        totalCreaturesTillNow += 4;
     }
 }
