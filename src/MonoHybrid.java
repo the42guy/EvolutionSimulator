@@ -11,11 +11,19 @@ public class MonoHybrid {
     public MonoHybrid(int generations) {
         this.maxGenerations = generations;
     }
-
     protected void seedParents(MonoCreature mc1, MonoCreature mc2) {                                                    //initializes the two seed creatures
         seeds[0] = mc1;
         seeds[1] = mc2;
         bufferList.add(seeds[0]);
         bufferList.add(seeds[1]);
+    }
+
+    protected void dumpBufferToTotalList(int whichIndex) {                                                              //puts the complete content of the buffer to totalList
+        totalList.add(whichIndex, bufferList);
+        bufferList.clear();
+    }
+
+    private void addToBuffer() {
+
     }
 }
