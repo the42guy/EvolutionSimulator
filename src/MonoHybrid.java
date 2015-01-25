@@ -14,16 +14,20 @@ public class MonoHybrid {
     protected void seedParents(MonoCreature mc1, MonoCreature mc2) {                                                    //initializes the two seed creatures
         seeds[0] = mc1;
         seeds[1] = mc2;
-        bufferList.add(seeds[0]);
-        bufferList.add(seeds[1]);
+        addToBuffer(seeds[0]);
+        addToBuffer(seeds[1]);
+        dumpBufferToTotalList(0);
     }
-
     protected void dumpBufferToTotalList(int whichIndex) {                                                              //puts the complete content of the buffer to totalList
         totalList.add(whichIndex, bufferList);
         bufferList.clear();
     }
 
-    private void addToBuffer() {
+    private void addToBuffer(MonoCreature aCreature) {                                                                  //adds the given creature to buffer
+        bufferList.add(aCreature);
+    }
+
+    private void fuseTwo(MonoCreature parent1, MonoCreature parent2) {
 
     }
 }
