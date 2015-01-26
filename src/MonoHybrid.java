@@ -19,6 +19,7 @@ public class MonoHybrid {
         addToBuffer(seeds[0]);
         addToBuffer(seeds[1]);
         dumpBufferToTotalList(0);
+        this.fuseTwo(seeds[0], seeds[1]);
     }
     protected void dumpBufferToTotalList(int whichIndex) {                                                              //puts the complete content of the buffer to totalList
         totalList.add(whichIndex, bufferList);
@@ -64,16 +65,27 @@ public class MonoHybrid {
                     System.err.println("Error in Program.");
                     throw new IllegalArgumentException("Error in Program.");
             }*/
-            if (counter > 2) {
+            if ((counter == 0) || (counter == 1)) {
+                System.out.println("Counter is less than 2");
                 gametes.add(parentOne.getGamete(counter));
-            } else if (counter < 2) {
+            } else if ((counter == 2) || (counter == 3)) {
+                System.out.println("Counter is more than 2");
                 gametes.add(parentTwo.getGamete(counter - 2));
             }
+            System.out.println(" We have " + gametes.get(counter) + " at " + counter);
         }
-        offSpring.add(new MonoCreature(gametes.get(0), gametes.get(2)));
+        MonoCreature creatureOne = new MonoCreature(gametes.get(0), gametes.get(2));
+        MonoCreature creatureTwo = new MonoCreature(gametes.get(0), gametes.get(3));
+        MonoCreature creatureThree = new MonoCreature(gametes.get(1), gametes.get(2));
+        MonoCreature creatureFour = new MonoCreature(gametes.get(1), gametes.get(3));
+        offSpring.add(creatureOne);
+        offSpring.add(creatureTwo);
+        offSpring.add(creatureThree);
+        offSpring.add(creatureFour);
+        /*offSpring.add(new MonoCreature(gametes.get(0), gametes.get(2)));
         offSpring.add(new MonoCreature(gametes.get(0), gametes.get(3)));
         offSpring.add(new MonoCreature(gametes.get(1), gametes.get(2)));
-        offSpring.add(new MonoCreature(gametes.get(1), gametes.get(3)));
+        offSpring.add(new MonoCreature(gametes.get(1), gametes.get(3)));*/
         for (int i = 0; i < 4; i++) {
             addToBuffer(offSpring.get(i));
         }

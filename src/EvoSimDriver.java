@@ -16,7 +16,7 @@ public class EvoSimDriver {
             MonoCreature mc2 = new MonoCreature("q", "q");                                                                  //Another one
             MonoHybrid m = new MonoHybrid(4);
             m.seedParents(mc1, mc2);
-            m.generate();
+            //m.generate();
         } catch (IllegalArgumentException e) {
             System.out.println("Wrong genotype entered!");
         } finally {

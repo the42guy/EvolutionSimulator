@@ -91,7 +91,7 @@ public class MonoCreature {
         gamete1 = genes.get(0);
         gamete2 = genes.get(1);
         charGamete1 = gamete1.charAt(0);
-        charGamete1 = gamete2.charAt(0);
+        charGamete2 = gamete2.charAt(0);
     }
 
     protected String getGamete(int whichOne) {                                                                          //Gets the required gamete
