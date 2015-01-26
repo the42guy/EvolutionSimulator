@@ -24,8 +24,10 @@ public class MonoHybrid {
     }
     protected void dumpBufferToTotalList(int whichIndex) {                                                              //puts the complete content of the buffer to totalList
         totalList.add(whichIndex, bufferList);
-        System.out.println("Total list's size: " + totalList.get(whichIndex).size());
-        bufferList.clear();
+        System.out.println("Total list's this index's size: " + totalList.get(whichIndex).size());
+        for (int j = 0; j < bufferList.size(); j++) {
+            bufferList.remove(j);
+        }
     }
     private void addToBuffer(MonoCreature aCreature) {                                                                  //adds the given creature to buffer
         bufferList.add(aCreature);
@@ -97,7 +99,7 @@ public class MonoHybrid {
     }
 
     protected void generate() {
-        /* @TODO: BUGGY!*/
+        /* @TODO: THE BUG IS IN HERE!*/
         /**
          * @javadoc
          * This method is where the real simulation takes place.
@@ -111,11 +113,11 @@ public class MonoHybrid {
          */
         int generationCount;
         int f = this.maxGenerations;
-        ArrayList<MonoCreature> lastGenCreatures;
+        //ArrayList<MonoCreature> lastGenCreatures;
         for (generationCount = 2; generationCount <= f; generationCount++) {
             System.out.println("Entered inside the looper for creating generation " + generationCount);                 // <-- debug message
-            lastGenCreatures = totalList.get(generationCount - 1);                                                      //totalList is an AL of ALs. So this returns an AL.
-            int totalLengthOfLastGen = lastGenCreatures.size();
+            ArrayList<MonoCreature> lastGenCreatures = totalList.get(generationCount - 1);                              //totalList is an AL of ALs. So this returns an AL.
+            int totalLengthOfLastGen = lastGenCreatures.size();                                                         //this is 0? Why?
             System.out.println("Last gen's size: " + totalLengthOfLastGen);
             int creatureOneLoc, creatureTwoLoc;
             MonoCreature creatureOne, creatureTwo;
