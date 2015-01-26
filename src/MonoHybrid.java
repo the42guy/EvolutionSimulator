@@ -78,7 +78,7 @@ public class MonoHybrid {
         int generationCount;
         int f = this.maxGenerations;
         ArrayList<MonoCreature> lastGenCreatures;
-        for (generationCount = 1; generationCount < f; generationCount++) {
+        for (generationCount = 1; generationCount <= f; generationCount++) {
             lastGenCreatures = totalList.get(generationCount - 1);                                                      //totalList is an AL of ALs. So this returns an AL.
             int totalLengthOfLastGen = lastGenCreatures.size();
             int creatureOneLoc, creatureTwoLoc;
@@ -92,7 +92,9 @@ public class MonoHybrid {
                     } //ends if
                 } //ends the loop for second level creatures
             } //ends the loop for first level creatures
+            this.dumpBufferToTotalList(generationCount);
         } //ends total loop
-        this.dumpBufferToTotalList(generationCount);
+
+
     }
 }
