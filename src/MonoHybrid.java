@@ -7,7 +7,8 @@ public class MonoHybrid {
     int maxGenerations;
     private MonoCreature[] seeds = new MonoCreature[2];
     ArrayList<MonoCreature> bufferList = new ArrayList<>();
-    ArrayList<ArrayList<MonoCreature>> totalList = new ArrayList<ArrayList<MonoCreature>>();
+    ArrayList<ArrayList<MonoCreature>> totalList = new ArrayList<ArrayList<MonoCreature>>(100);                         //just a sample value
+    MonoCreature[] creatureArray = new MonoCreature[99];
     private int totalCreaturesTillNow = 0;
     public MonoHybrid(int generations) {
         this.maxGenerations = generations;
@@ -34,7 +35,8 @@ public class MonoHybrid {
         bufferList.add(creatureFour);
     }
     private void fuseTwo(MonoCreature parentOne, MonoCreature parentTwo) {                                              //fuses two parents to create four off-springs
-        /**@javadoc
+        /**
+         * @javadoc
          * Fuses two parents' gametes to obtain 4 off-springs.
          * Working:
          *      Takes two MonoCreatures as arguments
@@ -72,15 +74,29 @@ public class MonoHybrid {
         parentOne.fusedWith(parentTwo);
         parentTwo.fusedWith(parentOne);
         totalCreaturesTillNow += 4;
+        System.out.println(totalCreaturesTillNow);
     }
 
     protected void generate() {
+        /**
+         * @javadoc
+         * This method is where the real simulation takes place.
+         * generationCount is the int which keeps on increasing each iteration.
+         * int f takes the maximum generation count initialized by the constructor.
+         * An ArrayList of MonoCreatures, which contains the creatures from the last generation. This is done in each iteration.
+         * The last generation's length is initialized, two other ints to hold the position for creatures
+         * Enter the L1 creature initializer. Here the creatures are taken from the ArrayList (above)
+         * Now the L2 creature gets initialized. Same as above.
+         * If both of them are not the same, and have not fused previously, then they will fuse.
+         */
         int generationCount;
         int f = this.maxGenerations;
         ArrayList<MonoCreature> lastGenCreatures;
         for (generationCount = 1; generationCount <= f; generationCount++) {
+            System.out.println("Entered inside the looper");
             lastGenCreatures = totalList.get(generationCount - 1);                                                      //totalList is an AL of ALs. So this returns an AL.
             int totalLengthOfLastGen = lastGenCreatures.size();
+            System.out.println(totalLengthOfLastGen);
             int creatureOneLoc, creatureTwoLoc;
             MonoCreature creatureOne, creatureTwo;
             for (creatureOneLoc = 0; creatureOneLoc < totalLengthOfLastGen; creatureOneLoc++) {
@@ -88,13 +104,12 @@ public class MonoHybrid {
                 for (creatureTwoLoc = 0; creatureTwoLoc < totalLengthOfLastGen; creatureTwoLoc++) {
                     creatureTwo = lastGenCreatures.get(creatureTwoLoc);
                     if ((creatureOne.hasNotFused(creatureTwo)) && (creatureOne != creatureTwo)) {
+                        System.out.println("Both the creatures haven't fused previously, and are not the same");        // <-- debug message
                         this.fuseTwo(creatureOne, creatureTwo);
                     } //ends if
                 } //ends the loop for second level creatures
             } //ends the loop for first level creatures
             this.dumpBufferToTotalList(generationCount);
-        } //ends total loop
-
-
+        } //ends total loop, the complete simulation
     }
 }
