@@ -10,8 +10,9 @@ public class MonoCreature {
     private char charGamete1, charGamete2;
     private String gamete1, gamete2;
     private String geneStructure;
-    ArrayList<MonoCreature> fusedWith = new ArrayList<MonoCreature>();
-    boolean allVerified = false;
+    private ArrayList<MonoCreature> fusedWith = new ArrayList<MonoCreature>();
+    private boolean allVerified = false;
+    private static int creatureID = 0;
 
     public MonoCreature(String characterGene1, String characterGene2) {
         this.genes.add(characterGene1);
@@ -25,11 +26,19 @@ public class MonoCreature {
         geneStructure = this.createGeneStructure();
         dominantTrait = this.setDominantTrait();
         genotypeCharacter = this.setGenotypeCharacter();
+        System.out.println("MonoCreature says this: ");
+        System.out.println("    ID: " + MonoCreature.creatureID);
+        System.out.println("    Gene structure: " + this.geneStructure);
+        System.out.println("    Dom char: " + this.getDominantTrait());
+        System.out.println("    Gamete 1: " + this.genes.get(0));
+        System.out.println("    Gamete 2: " + this.genes.get(1));
+        System.out.println("\n");
+        creatureID++;
     }
     private String createGeneStructure() {
         String geneStructure = "";
         if (gamete1 == gamete2) {
-            geneStructure = gamete1.toString();
+            geneStructure = gamete1 + gamete2;
         } else if (Character.isUpperCase(charGamete1)) {
             geneStructure = gamete1 + gamete2;
         } else if (Character.isUpperCase(charGamete2)) {
@@ -59,7 +68,6 @@ public class MonoCreature {
             isOK = true;
         return isOK;
     }
-
     private char setGenotypeCharacter() {
         char genotype = ' ';
         if (allVerified) {
@@ -69,7 +77,7 @@ public class MonoCreature {
     }
 
     private String setDominantTrait() {                                                                                   //Sets the dominant trait
-        String domTrait = "";
+        String domTrait = "none";
         for(int i = 0; i < 2; i++) {
             String geneThisIteration = this.genes.get(i);
             char geneThisIter = geneThisIteration.charAt(0);
@@ -78,7 +86,6 @@ public class MonoCreature {
             }
         }
         return domTrait;
-
     }
     private void createGametes() {                                                                                      //Initializes the gametes for later use
         gamete1 = genes.get(0);
@@ -98,7 +105,6 @@ public class MonoCreature {
     protected void fusedWith(MonoCreature aCreature) {                                                                  //Adds the creature to the ArrayList
         this.fusedWith.add(aCreature);
     }
-
     protected boolean hasFused(MonoCreature theCreatureToCheck) {                                                       //Gets the status of fusion with the given creature
         boolean hasFused = false;
         if (fusedWith.contains(theCreatureToCheck)) {
