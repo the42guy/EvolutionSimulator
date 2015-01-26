@@ -20,6 +20,7 @@ public class MonoHybrid {
         addToBuffer(seeds[1]);
         dumpBufferToTotalList(0);
         this.fuseTwo(seeds[0], seeds[1]);
+        dumpBufferToTotalList(1);
     }
     protected void dumpBufferToTotalList(int whichIndex) {                                                              //puts the complete content of the buffer to totalList
         totalList.add(whichIndex, bufferList);
@@ -52,7 +53,7 @@ public class MonoHybrid {
         ArrayList<String> gametes = new ArrayList<>(4);
         ArrayList<MonoCreature> offSpring = new ArrayList<>(4);
         for (int counter = 0; counter < 4; counter++) {
-            /*switch (counter) {
+            /*switch (counter) {      //this was buggy
                 case 0:
                 case 1:
                     gametes.add(counter, parentOne.getGamete(counter));
@@ -96,6 +97,7 @@ public class MonoHybrid {
     }
 
     protected void generate() {
+        /* @TODO: BUGGY!*/
         /**
          * @javadoc
          * This method is where the real simulation takes place.
@@ -110,8 +112,8 @@ public class MonoHybrid {
         int generationCount;
         int f = this.maxGenerations;
         ArrayList<MonoCreature> lastGenCreatures;
-        for (generationCount = 1; generationCount <= f; generationCount++) {
-            System.out.println("Entered inside the looper for iteration " + generationCount);                           // <-- debug message
+        for (generationCount = 2; generationCount <= f; generationCount++) {
+            System.out.println("Entered inside the looper for creating generation " + generationCount);                 // <-- debug message
             lastGenCreatures = totalList.get(generationCount - 1);                                                      //totalList is an AL of ALs. So this returns an AL.
             int totalLengthOfLastGen = lastGenCreatures.size();
             System.out.println("Last gen's size: " + totalLengthOfLastGen);
