@@ -25,9 +25,11 @@ public class MonoHybrid {
     protected void dumpBufferToTotalList(int whichIndex) {                                                              //puts the complete content of the buffer to totalList
         totalList.add(whichIndex, bufferList);
         System.out.println("Total list's this index's size: " + totalList.get(whichIndex).size());
-        for (int j = 0; j < bufferList.size(); j++) {
+        /*for (int j = 0; j < bufferList.size(); j++) {
             bufferList.remove(j);
-        }
+        }*/
+        //bufferList.clear();
+
     }
     private void addToBuffer(MonoCreature aCreature) {                                                                  //adds the given creature to buffer
         bufferList.add(aCreature);
@@ -100,6 +102,11 @@ public class MonoHybrid {
 
     protected void generate() {
         /* @TODO: THE BUG IS IN HERE!*/
+        /**
+         * What does this bug do?
+         * Due to something, the lastGenCreatures.size() is returning 0. Strange.
+         * The solution: the clear method on the buffer somehow also clears lastGenCreatures. Need to solve this.
+         * */
         /**
          * @javadoc
          * This method is where the real simulation takes place.
