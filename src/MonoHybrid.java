@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public class MonoHybrid {
     int maxGenerations;
     private MonoCreature[] seeds = new MonoCreature[2];
-    ArrayList<MonoCreature> bufferList = new ArrayList<>();
+    ArrayList<MonoCreature> bufferList = new ArrayList<MonoCreature>();
     ArrayList<ArrayList<MonoCreature>> totalList = new ArrayList<ArrayList<MonoCreature>>(100);                         //just a sample value
     MonoCreature[] creatureArray = new MonoCreature[100];
     private int totalCreaturesTillNow = 0;
@@ -52,8 +52,8 @@ public class MonoHybrid {
          *      Both parent MonoCreatures get to add each other in their respective fused lists, to prevent future fuses
          *      total creature count is increased by 4 each run
          * */
-        ArrayList<String> gametes = new ArrayList<>(4);
-        ArrayList<MonoCreature> offSpring = new ArrayList<>(4);
+        ArrayList<String> gametes = new ArrayList<String>(4);
+        ArrayList<MonoCreature> offSpring = new ArrayList<MonoCreature>(4);
         for (int counter = 0; counter < 4; counter++) {
             /*switch (counter) {      //this was buggy
                 case 0:
