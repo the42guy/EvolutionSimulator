@@ -106,6 +106,7 @@ public class MonoHybrid {
          * What does this bug do?
          * Due to something, the lastGenCreatures.size() is returning 0. Strange.
          * The solution: the clear method on the buffer somehow also clears lastGenCreatures. Need to solve this.
+         * Possibly create a new method for clearing the buffer.
          * */
         /**
          * @javadoc
