@@ -57,7 +57,7 @@ public class MonoHybrid {
         ArrayList<String> gametes = new ArrayList<String>(4);
         ArrayList<MonoCreature> offSpring = new ArrayList<MonoCreature>(4);
         for (int counter = 0; counter < 4; counter++) {
-            /*switch (counter) {      //this was buggy
+            /*switch (counter) {                                                                                        //this was buggy, can't be
                 case 0:
                 case 1:
                     gametes.add(counter, parentOne.getGamete(counter));
