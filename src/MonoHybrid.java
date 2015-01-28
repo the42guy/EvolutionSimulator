@@ -23,10 +23,11 @@ public class MonoHybrid {
         dumpBufferToTotalList(1);
     }
     protected void dumpBufferToTotalList(int whichIndex) {                                                              //puts the complete content of the buffer to totalList
-        ArrayList<MonoCreature> mcal = new ArrayList<MonoCreature>();
+        ArrayList<MonoCreature> mcal = new ArrayList<MonoCreature>(bufferList);
         for (int i = 0; i < bufferList.size(); i++) {
             mcal.add(i, bufferList.get(i));
         }
+        //Collections.copy(mcal, bufferList);
         totalList.add(whichIndex, mcal);
         System.out.println("Total list's this index's size: " + totalList.get(whichIndex).size());
         /*for (int j = 0; j < bufferList.size(); j++) {
