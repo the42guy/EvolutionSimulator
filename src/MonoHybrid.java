@@ -23,12 +23,16 @@ public class MonoHybrid {
         dumpBufferToTotalList(1);
     }
     protected void dumpBufferToTotalList(int whichIndex) {                                                              //puts the complete content of the buffer to totalList
-        totalList.add(whichIndex, bufferList);
+        ArrayList<MonoCreature> mcal = new ArrayList<MonoCreature>();
+        for (int i = 0; i < bufferList.size(); i++) {
+            mcal.add(i, bufferList.get(i));
+        }
+        totalList.add(whichIndex, mcal);
         System.out.println("Total list's this index's size: " + totalList.get(whichIndex).size());
         /*for (int j = 0; j < bufferList.size(); j++) {
             bufferList.remove(j);
         }*/
-        //bufferList.clear();
+        bufferList.clear();
 
     }
     private void addToBuffer(MonoCreature aCreature) {                                                                  //adds the given creature to buffer
@@ -57,7 +61,7 @@ public class MonoHybrid {
         ArrayList<String> gametes = new ArrayList<String>(4);
         ArrayList<MonoCreature> offSpring = new ArrayList<MonoCreature>(4);
         for (int counter = 0; counter < 4; counter++) {
-            /*switch (counter) {                                                                                        //this was buggy, can't be
+            /*switch (counter) {                                                                                        //this was buggy, doesn't initialize gametes
                 case 0:
                 case 1:
                     gametes.add(counter, parentOne.getGamete(counter));
@@ -101,12 +105,11 @@ public class MonoHybrid {
     }
 
     protected void generate() {
-        /* @TODO: THE BUG IS IN HERE!*/
+        /* @TODO: THE BUG IS ALMOST DEAD (Need to do a breath check nevertheless) !*/
         /**
-         * What does this bug do?
-         * Due to something, the lastGenCreatures.size() is returning 0. Strange.
-         * The solution: the clear method on the buffer somehow also clears lastGenCreatures. Need to solve this.
-         * Possibly create a new method for clearing the buffer.
+         * Bug documentation:
+         * The dumpBufferToList() method was causing problems.
+         * Earlier, the bufferList was added to the totalList and then bufferList was cleared. As a result, the values in totalList also evaporated with bufferList
          * */
         /**
          * @javadoc
@@ -121,10 +124,10 @@ public class MonoHybrid {
          */
         int generationCount;
         int f = this.maxGenerations;
-        //ArrayList<MonoCreature> lastGenCreatures;
+        ArrayList<MonoCreature> lastGenCreatures;
         for (generationCount = 2; generationCount <= f; generationCount++) {
             System.out.println("Entered inside the looper for creating generation " + generationCount);                 // <-- debug message
-            ArrayList<MonoCreature> lastGenCreatures = totalList.get(generationCount - 1);                              //totalList is an AL of ALs. So this returns an AL.
+            lastGenCreatures = totalList.get(generationCount - 1);                              //totalList is an AL of ALs. So this returns an AL.
             int totalLengthOfLastGen = lastGenCreatures.size();                                                         //this is 0? Why?
             System.out.println("Last gen's size: " + totalLengthOfLastGen);
             int creatureOneLoc, creatureTwoLoc;
