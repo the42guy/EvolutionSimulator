@@ -118,6 +118,10 @@ public class MonoHybrid {
          * Now the L2 creature gets initialized. Same as above.
          * If both of them are not the same, and have not fused previously, then they will fuse.
          */
+        /*
+         * @TODO
+         * A New Algorithm if the bug is not eliminated quickly.
+         */
         int generationCount;
         int f = this.maxGenerations;
         ArrayList<MonoCreature> lastGenCreatures;
