@@ -23,18 +23,19 @@ public class MonoHybrid {
         dumpBufferToTotalList(1);
     }
     protected void dumpBufferToTotalList(int whichIndex) {                                                              //puts the complete content of the buffer to totalList
-        ArrayList<MonoCreature> mcal = new ArrayList<MonoCreature>(bufferList);
+        /*ArrayList<MonoCreature> mcal = new ArrayList<MonoCreature>(bufferList);
         for (int i = 0; i < bufferList.size(); i++) {
             mcal.add(i, bufferList.get(i));
-        }
+        }*/
         //Collections.copy(mcal, bufferList);
-        totalList.add(whichIndex, mcal);
-        System.out.println("Total list's this index's size: " + totalList.get(whichIndex).size());
+        totalList.add(whichIndex, (ArrayList<MonoCreature>) bufferList.clone());
+        System.out.println(" In dump method \nTotal list's this index's size: " + totalList.get(whichIndex).size());
         /*for (int j = 0; j < bufferList.size(); j++) {
             bufferList.remove(j);
         }*/
         bufferList.clear();
-
+        System.out.println("    And now totalList's this index's size: " + totalList.get(whichIndex).size());
+        System.out.println();
     }
     private void addToBuffer(MonoCreature aCreature) {                                                                  //adds the given creature to buffer
         bufferList.add(aCreature);
@@ -106,12 +107,6 @@ public class MonoHybrid {
     }
 
     protected void generate() {
-        /* @TODO: THE BUG IS ALMOST DEAD (Need to do a breath check nevertheless) !*/
-        /**
-         * Bug documentation:
-         * The dumpBufferToList() method was causing problems.
-         * Earlier, the bufferList was added to the totalList and then bufferList was cleared. As a result, the values in totalList also evaporated with bufferList
-         * */
         /**
          * @javadoc
          * This method is where the real simulation takes place.
@@ -140,9 +135,17 @@ public class MonoHybrid {
                     System.out.println(" and creatureTwo at " + creatureTwoLoc);
                     creatureTwo = lastGenCreatures.get(creatureTwoLoc);
                     if ((creatureOne.hasNotFused(creatureTwo)) && (creatureOne != creatureTwo)) {
-                        System.out.println("Both the creatures haven't fused previously, and are not the same");        // <-- debug message
+                        System.out.println("    Both the creatures haven't fused previously, and are not the same");        // <-- debug message
                         this.fuseTwo(creatureOne, creatureTwo);
-                    } //ends if
+                    } /*ends if*/ else if (creatureOne == creatureTwo) {
+                        System.out.println("    Both creatures are same");
+                    } else if (creatureOne.hasFused(creatureTwo)) {
+                        System.out.println("    Both creatures have fused");
+                    } else if (creatureOne.hasNotFused(creatureTwo)) {
+                        System.out.println("    Both creatures have not fused");
+                    } else {
+                        System.out.println("    What happened?");                                                       // <-- always this happens, hasFused() is buggy as well
+                    }
                 } //ends the loop for second level creatures
             } //ends the loop for first level creatures
             this.dumpBufferToTotalList(generationCount);
