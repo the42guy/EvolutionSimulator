@@ -145,6 +145,8 @@ public class MonoHybrid {
                         System.out.println("    Both creatures have not fused");
                     } else {
                         System.out.println("    What happened?");                                                       // <-- always this happens, hasFused() is buggy as well
+                        System.out.println("    Fused? " + creatureOne.hasFused(creatureTwo));
+                        System.out.println("    Not fused? " + creatureOne.hasNotFused(creatureTwo));
                     }
                 } //ends the loop for second level creatures
             } //ends the loop for first level creatures

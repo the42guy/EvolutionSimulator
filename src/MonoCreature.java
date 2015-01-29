@@ -78,7 +78,8 @@ public class MonoCreature {
 
     private String setDominantTrait() {                                                                                   //Sets the dominant trait
         String domTrait = "none";
-        for(int i = 0; i < 2; i++) {
+        int i;
+        for (i = 0; i < 2; i++) {
             String geneThisIteration = this.genes.get(i);
             char geneThisIter = geneThisIteration.charAt(0);
             if (Character.isUpperCase(geneThisIter)) {
@@ -93,7 +94,6 @@ public class MonoCreature {
         charGamete1 = gamete1.charAt(0);
         charGamete2 = gamete2.charAt(0);
     }
-
     protected String getGamete(int whichOne) {                                                                          //Gets the required gamete
         String gamete = "";
         if((whichOne==0) || (whichOne==1)) {
