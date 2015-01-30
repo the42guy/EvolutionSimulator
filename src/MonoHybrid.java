@@ -119,8 +119,7 @@ public class MonoHybrid {
          * If both of them are not the same, and have not fused previously, then they will fuse.
          */
         /*
-         * @TODO
-         * A New Algorithm if the bug is not eliminated quickly.
+         * @TODO: The bug is not here. It's in MonoCreature's hasFused/hasNotFused methods
          */
         int generationCount;
         int f = this.maxGenerations;

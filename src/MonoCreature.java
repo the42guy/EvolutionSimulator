@@ -107,8 +107,11 @@ public class MonoCreature {
     }
     protected boolean hasFused(MonoCreature theCreatureToCheck) {                                                       //Gets the status of fusion with the given creature
         boolean hasFused = false;
-        if (fusedWith.contains(theCreatureToCheck)) {
-            hasFused = true;
+        for (int i = 0; i < fusedWith.size(); i++) {
+            if (theCreatureToCheck == fusedWith.get(i)) {
+                hasFused = true;
+                break;
+            }
         }
         return hasFused;
     }
