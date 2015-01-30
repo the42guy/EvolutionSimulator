@@ -75,7 +75,6 @@ public class MonoCreature {
         }
         return genotype;
     }
-
     private String setDominantTrait() {                                                                                   //Sets the dominant trait
         String domTrait = "none";
         int i;
@@ -101,9 +100,8 @@ public class MonoCreature {
         }
         return gamete;
     }
-
     protected void fusedWith(MonoCreature aCreature) {                                                                  //Adds the creature to the ArrayList
-        this.fusedWith.add(aCreature);
+        fusedWith.add(aCreature);
     }
     protected boolean hasFused(MonoCreature theCreatureToCheck) {                                                       //Gets the status of fusion with the given creature
         boolean hasFused = false;

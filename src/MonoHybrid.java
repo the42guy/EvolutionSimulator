@@ -85,18 +85,18 @@ public class MonoHybrid {
             }
             System.out.println(" We have " + gametes.get(counter) + " at " + counter);
         }
-        MonoCreature creatureOne = new MonoCreature(gametes.get(0), gametes.get(2));
+        /*MonoCreature creatureOne = new MonoCreature(gametes.get(0), gametes.get(2));
         MonoCreature creatureTwo = new MonoCreature(gametes.get(0), gametes.get(3));
         MonoCreature creatureThree = new MonoCreature(gametes.get(1), gametes.get(2));
         MonoCreature creatureFour = new MonoCreature(gametes.get(1), gametes.get(3));
         offSpring.add(creatureOne);
         offSpring.add(creatureTwo);
         offSpring.add(creatureThree);
-        offSpring.add(creatureFour);
-        /*offSpring.add(new MonoCreature(gametes.get(0), gametes.get(2)));
+        offSpring.add(creatureFour);*/
+        offSpring.add(new MonoCreature(gametes.get(0), gametes.get(2)));
         offSpring.add(new MonoCreature(gametes.get(0), gametes.get(3)));
         offSpring.add(new MonoCreature(gametes.get(1), gametes.get(2)));
-        offSpring.add(new MonoCreature(gametes.get(1), gametes.get(3)));*/
+        offSpring.add(new MonoCreature(gametes.get(1), gametes.get(3)));
         for (int i = 0; i < 4; i++) {
             addToBuffer(offSpring.get(i));
         }
