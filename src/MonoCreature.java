@@ -10,7 +10,7 @@ public class MonoCreature {
     private char charGamete1, charGamete2;
     private String gamete1, gamete2;
     private String geneStructure;
-    private ArrayList<MonoCreature> fusedWith = new ArrayList<MonoCreature>();
+    private ArrayList<MonoCreature> fusedWith = new ArrayList<MonoCreature>();                                          //ArrayLists are worth too much trouble!
     private boolean allVerified = false;
     private static int creatureID = 0;
 
@@ -103,17 +103,16 @@ public class MonoCreature {
     protected void fusedWith(MonoCreature aCreature) {                                                                  //Adds the creature to the ArrayList
         fusedWith.add(aCreature);
     }
-    protected boolean hasFused(MonoCreature theCreatureToCheck) {                                                       //Gets the status of fusion with the given creature
-        boolean hasFused = false;
-        for (int i = 0; i < fusedWith.size(); i++) {
-            if (theCreatureToCheck == fusedWith.get(i)) {
-                hasFused = true;
-                break;
-            }
+
+    protected boolean hasFusedWith(MonoCreature theCreatureToCheck) {                                                       //Gets the status of fusion with the given creature
+        boolean hasFusedBool = false;
+        if (fusedWith.contains(theCreatureToCheck)) {
+            hasFusedBool = true;
         }
-        return hasFused;
+        return hasFusedBool;
     }
-    protected boolean hasNotFused(MonoCreature theCreatureToCheck) {
+
+    protected boolean hasNotFusedWith(MonoCreature theCreatureToCheck) {
         boolean hasNotFused = false;
         if (fusedWith.contains(theCreatureToCheck)) {
             hasNotFused = true;

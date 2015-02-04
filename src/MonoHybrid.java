@@ -112,7 +112,7 @@ public class MonoHybrid {
          * If both of them are not the same, and have not fused previously, then they will fuse.
          */
         /*
-         * @TODO: The bug is not here. It's in MonoCreature's hasFused/hasNotFused methods
+         * @TODO: The bug is not here. It's in MonoCreature's hasFusedWith/hasNotFusedWith methods
          */
         int generationCount;
         int f = this.maxGenerations;
@@ -130,19 +130,19 @@ public class MonoHybrid {
                 for (creatureTwoLoc = 0; creatureTwoLoc < totalLengthOfLastGen; creatureTwoLoc++) {
                     System.out.println(" and creatureTwo at " + creatureTwoLoc);
                     creatureTwo = lastGenCreatures.get(creatureTwoLoc);
-                    if ((creatureOne.hasNotFused(creatureTwo)) && (creatureOne != creatureTwo)) {
+                    if ((creatureOne.hasNotFusedWith(creatureTwo)) && (creatureOne != creatureTwo)) {
                         System.out.println("    Both the creatures haven't fused previously, and are not the same");        // <-- debug message
                         this.fuseTwo(creatureOne, creatureTwo);
                     } /*ends if*/ else if (creatureOne == creatureTwo) {
                         System.out.println("    Both creatures are same");
-                    } else if (creatureOne.hasFused(creatureTwo)) {
+                    } else if (creatureOne.hasFusedWith(creatureTwo)) {
                         System.out.println("    Both creatures have fused");
-                    } else if (creatureOne.hasNotFused(creatureTwo)) {
+                    } else if (creatureOne.hasNotFusedWith(creatureTwo)) {
                         System.out.println("    Both creatures have not fused");
                     } else {
-                        System.out.println("    What happened?");                                                       // <-- always this happens, hasFused() is buggy as well
-                        System.out.println("    Fused? " + creatureOne.hasFused(creatureTwo));
-                        System.out.println("    Not fused? " + creatureOne.hasNotFused(creatureTwo));
+                        System.out.println("    What happened?");                                                       // <-- always this happens, hasFusedWith() is buggy as well
+                        System.out.println("    Fused? " + creatureOne.hasFusedWith(creatureTwo) + ", " + creatureTwo.hasFusedWith(creatureOne));
+                        System.out.println("    Not fused? " + creatureOne.hasNotFusedWith(creatureTwo) + ", " + creatureTwo.hasFusedWith(creatureOne));
                     }
                 } //ends the loop for second level creatures
             } //ends the loop for first level creatures
