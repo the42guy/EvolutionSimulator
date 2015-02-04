@@ -60,8 +60,9 @@ public class MonoHybrid {
          *      Both parent MonoCreatures get to add each other in their respective fused lists, to prevent future fuses
          *      total creature count is increased by 4 each run
          * */
-        ArrayList<String> gametes = new ArrayList<String>(4);
-        ArrayList<MonoCreature> offSpring = new ArrayList<MonoCreature>(4);
+        //ArrayList<String> gametes = new ArrayList<String>(4);
+        String[] gametes = new String[4];
+        MonoCreature[] offSprings = new MonoCreature[4];
         for (int counter = 0; counter < 4; counter++) {
             /*switch (counter) {                                                                                        //this was buggy, doesn't initialize gametes
                 case 0:
@@ -78,27 +79,19 @@ public class MonoHybrid {
             }*/
             if ((counter == 0) || (counter == 1)) {
                 System.out.println("Counter is less than 2");
-                gametes.add(parentOne.getGamete(counter));
+                gametes[counter] = parentOne.getGamete(counter);
             } else if ((counter == 2) || (counter == 3)) {
                 System.out.println("Counter is more than 2");
-                gametes.add(parentTwo.getGamete(counter - 2));
+                gametes[counter] = parentTwo.getGamete(counter - 2);
             }
-            System.out.println(" We have " + gametes.get(counter) + " at " + counter);
+            System.out.println(" We have " + gametes[counter] + " at " + counter);
         }
-        /*MonoCreature creatureOne = new MonoCreature(gametes.get(0), gametes.get(2));
-        MonoCreature creatureTwo = new MonoCreature(gametes.get(0), gametes.get(3));
-        MonoCreature creatureThree = new MonoCreature(gametes.get(1), gametes.get(2));
-        MonoCreature creatureFour = new MonoCreature(gametes.get(1), gametes.get(3));
-        offSpring.add(creatureOne);
-        offSpring.add(creatureTwo);
-        offSpring.add(creatureThree);
-        offSpring.add(creatureFour);*/
-        offSpring.add(new MonoCreature(gametes.get(0), gametes.get(2)));
-        offSpring.add(new MonoCreature(gametes.get(0), gametes.get(3)));
-        offSpring.add(new MonoCreature(gametes.get(1), gametes.get(2)));
-        offSpring.add(new MonoCreature(gametes.get(1), gametes.get(3)));
+        offSprings[0] = new MonoCreature(gametes[0], gametes[2]);
+        offSprings[1] = new MonoCreature(gametes[0], gametes[3]);
+        offSprings[2] = new MonoCreature(gametes[1], gametes[2]);
+        offSprings[3] = new MonoCreature(gametes[1], gametes[3]);
         for (int i = 0; i < 4; i++) {
-            addToBuffer(offSpring.get(i));
+            addToBuffer(offSprings[i]);
         }
         parentOne.fusedWith(parentTwo);
         parentTwo.fusedWith(parentOne);
