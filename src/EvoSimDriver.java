@@ -14,7 +14,7 @@ public class EvoSimDriver {
         try {
             MonoCreature mc1 = new MonoCreature("Q", "Q");                                                                  //A monocreature (with two genes of one character
             MonoCreature mc2 = new MonoCreature("q", "q");                                                                  //Another one
-            MonoHybrid m = new MonoHybrid(4);
+            MonoHybrid m = new MonoHybrid(3);
             m.seedParents(mc1, mc2);
             m.generate();
         } catch (IllegalArgumentException e) {
