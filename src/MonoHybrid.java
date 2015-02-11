@@ -41,6 +41,10 @@ public class MonoHybrid {
         bufferList.add(aCreature);
     }
 
+    private ArrayList<MonoCreature> getGeneration(int generation) {
+        return this.totalList.get(generation);
+    }
+
     private void addToBuffer(MonoCreature creatureOne, MonoCreature creatureTwo, MonoCreature creatureThree, MonoCreature creatureFour) {   //possibly useless
         bufferList.add(creatureOne);
         bufferList.add(creatureTwo);
@@ -64,19 +68,6 @@ public class MonoHybrid {
         String[] gametes = new String[4];
         MonoCreature[] offSprings = new MonoCreature[4];
         for (int counter = 0; counter < 4; counter++) {
-            /*switch (counter) {                                                                                        //this was buggy, doesn't initialize gametes
-                case 0:
-                case 1:
-                    gametes.add(counter, parentOne.getGamete(counter));
-                    break;
-                case 2:
-                case 3:
-                    gametes.add(counter, parentTwo.getGamete(counter - 2));
-                    break;
-                default:
-                    System.err.println("Error in Program.");
-                    throw new IllegalArgumentException("Error in Program.");
-            }*/
             if ((counter == 0) || (counter == 1)) {
                 System.out.println("Counter is less than 2");
                 gametes[counter] = parentOne.getGamete(counter);
@@ -114,7 +105,13 @@ public class MonoHybrid {
         /*
          * @TODO: The bug is not here. It's in MonoCreature's hasFusedWith/hasNotFusedWith methods
          */
-        int generationCount;
+        int maxGen = this.maxGenerations;
+        ArrayList<MonoCreature> lastGenCreatures;
+        for (int f = 0; f < maxGen; f++) {
+            System.out.println(" Entered the loop for the " + f + "th time");
+            lastGenCreatures = this.getGeneration(f);
+        }
+        /*int generationCount;
         int f = this.maxGenerations;
         ArrayList<MonoCreature> lastGenCreatures;
         for (generationCount = 2; generationCount <= f; generationCount++) {
@@ -133,7 +130,7 @@ public class MonoHybrid {
                     if ((creatureOne.hasNotFusedWith(creatureTwo)) && (creatureOne != creatureTwo)) {
                         System.out.println("    Both the creatures haven't fused previously, and are not the same");        // <-- debug message
                         this.fuseTwo(creatureOne, creatureTwo);
-                    } /*ends if*/ else if (creatureOne == creatureTwo) {
+                    } else if (creatureOne == creatureTwo) {
                         System.out.println("    Both creatures are same");
                     } else if (creatureOne.hasFusedWith(creatureTwo)) {
                         System.out.println("    Both creatures have fused");
@@ -148,5 +145,6 @@ public class MonoHybrid {
             } //ends the loop for first level creatures
             this.dumpBufferToTotalList(generationCount);
         } //ends total loop, the complete simulation
+        */
     }
 }
