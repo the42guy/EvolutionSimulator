@@ -110,6 +110,7 @@ public class MonoHybrid {
         for (int f = 0; f < maxGen; f++) {
             System.out.println(" Entered the loop for the " + f + "th time");
             lastGenCreatures = this.getGeneration(f);
+            int maxLengthLastGen = lastGenCreatures.size();
         }
         /*int generationCount;
         int f = this.maxGenerations;
