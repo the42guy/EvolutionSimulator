@@ -28,7 +28,7 @@ public class MonoHybrid {
             mcal.add(i, bufferList.get(i));
         }*/
         //Collections.copy(mcal, bufferList);
-        totalList.add(whichIndex, (ArrayList<MonoCreature>) bufferList.clone());
+        totalList.add(whichIndex, (ArrayList<MonoCreature>) bufferList.clone());                                        // @TODO: fix this
         System.out.println(" In dump method \nTotal list's this index's size: " + totalList.get(whichIndex).size());
         /*for (int j = 0; j < bufferList.size(); j++) {
             bufferList.remove(j);
@@ -111,6 +111,25 @@ public class MonoHybrid {
             System.out.println(" Entered the loop for the " + f + "th time");
             lastGenCreatures = this.getGeneration(f);
             int maxLengthLastGen = lastGenCreatures.size();
+            System.out.println("    Last gen's size = " + maxLengthLastGen);
+            int creatureOneLoc, creatureTwoLoc;
+            MonoCreature creatureOne, creatureTwo;
+            for (creatureOneLoc = 0; creatureOneLoc < maxLengthLastGen; creatureOneLoc++) {
+                System.out.println("      For c-1 loc = " + creatureOneLoc);
+                creatureOne = lastGenCreatures.get(creatureOneLoc);
+                for (creatureTwoLoc = 0; creatureTwoLoc < maxLengthLastGen; creatureTwoLoc++) {
+                    System.out.println("      For c-2 loc = " + creatureTwoLoc);
+                    creatureTwo = lastGenCreatures.get(creatureTwoLoc);
+                    if ((creatureOneLoc != creatureTwoLoc) && (creatureOne.hasNotFusedWith(creatureTwo)) && (creatureTwo.hasNotFusedWith(creatureOne))) {
+                        this.fuseTwo(creatureOne, creatureTwo);
+                    } else if (creatureOneLoc == creatureTwoLoc) {
+                        System.out.println("        The creatures are same");
+                    } else if (creatureOne.hasFusedWith(creatureTwo) || (creatureTwo.hasFusedWith(creatureOne))) {
+                        System.out.println("        The creatures have fused");
+                    }
+                }
+            }
+            this.dumpBufferToTotalList(f);
         }
         /*int generationCount;
         int f = this.maxGenerations;
