@@ -103,24 +103,23 @@ public class MonoHybrid {
          * If both of them are not the same, and have not fused previously, then they will fuse.
          */
         /*
-         * @TODO: The bug is not here. It's in MonoCreature's hasFusedWith/hasNotFusedWith methods
+         * @TODO: The bug is not here. It can be possibly in MonoCreature's hasFusedWith/hasNotFusedWith methods
          */
         int maxGen = this.maxGenerations;
-        ArrayList<MonoCreature> lastGenCreatures;
         for (int f = 0; f < maxGen; f++) {
-            System.out.println(" Entered the loop for the " + f + "th time");
-            lastGenCreatures = this.getGeneration(f);
+            System.out.println(" Entered the loop for the " + f + "th time (in generate() method)");                    //<--- Debug message
+            ArrayList<MonoCreature> lastGenCreatures = this.getGeneration(f);
             int maxLengthLastGen = lastGenCreatures.size();
             System.out.println("    Last gen's size = " + maxLengthLastGen);
             int creatureOneLoc, creatureTwoLoc;
-            MonoCreature creatureOne, creatureTwo;
+            //MonoCreature creatureOne, creatureTwo;
             for (creatureOneLoc = 0; creatureOneLoc < maxLengthLastGen; creatureOneLoc++) {
                 System.out.println("      For c-1 loc = " + creatureOneLoc);
-                creatureOne = lastGenCreatures.get(creatureOneLoc);
+                MonoCreature creatureOne = lastGenCreatures.get(creatureOneLoc);
                 for (creatureTwoLoc = 0; creatureTwoLoc < maxLengthLastGen; creatureTwoLoc++) {
                     System.out.println("      For c-2 loc = " + creatureTwoLoc);
-                    creatureTwo = lastGenCreatures.get(creatureTwoLoc);
-                    if ((creatureOneLoc != creatureTwoLoc) && (creatureOne.hasNotFusedWith(creatureTwo)) && (creatureTwo.hasNotFusedWith(creatureOne))) {
+                    MonoCreature creatureTwo = lastGenCreatures.get(creatureTwoLoc);
+                    if ((creatureOneLoc != creatureTwoLoc) && ((creatureOne.hasNotFusedWith(creatureTwo)) || (creatureTwo.hasNotFusedWith(creatureOne)))) {
                         this.fuseTwo(creatureOne, creatureTwo);
                     } else if (creatureOneLoc == creatureTwoLoc) {
                         System.out.println("        The creatures are same");
