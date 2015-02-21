@@ -122,18 +122,17 @@ public class MonoCreature {                                                     
     }
 
     protected boolean hasNotFusedWith(MonoCreature verifyThis) {                                                               //Checks if this creature has fused with the passed creature
-        boolean notFusedWithIt = true;
+        boolean notFusedWithIt;
         if (fusedWith.contains(verifyThis)) {
             notFusedWithIt = false;
+        } else {
+            notFusedWithIt = true;
         }
         return notFusedWithIt;
     }
 
     protected boolean hasFusedWith(MonoCreature verifyThis) {
-        boolean hasFused = false;
-        if (fusedWith.contains(verifyThis)) {
-            hasFused = true;
-        }
+        boolean hasFused = !hasNotFusedWith(verifyThis);
         return hasFused;
     }
 

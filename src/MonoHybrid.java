@@ -34,8 +34,9 @@ public class MonoHybrid {
             bufferList.remove(j);
         }*/
         bufferList.clear();
-        System.out.println("    And now totalList's this index's size: " + totalList.get(whichIndex).size());
-        System.out.println();
+        System.out.println("    Cleared the buffer\n    And now totalList's this index's size: " + totalList.get(whichIndex).size());
+        System.out.println("    The buffer's size is " + bufferList.size());
+        System.out.println("    totalList's size is " + totalList.size() + "\n");
     }
     private void addToBuffer(MonoCreature aCreature) {                                                                  //adds the given creature to buffer
         bufferList.add(aCreature);
