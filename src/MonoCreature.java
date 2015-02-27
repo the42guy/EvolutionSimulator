@@ -9,14 +9,11 @@ import java.util.ArrayList;
  */
 public class MonoCreature {                                                                                             //This is a monocreature
 
-    /*Deprecated: */private static int orgID = 0;
-    /*Deprecated: */protected int uniqueRID = (int) (Math.random() * 1000000000);                                                       //A random ID for each org, will be most probably unique. Maybe add a uniqueness checker?
-
     public MonoCreature() {                                                                                             //A blank constructor for debugging purposes
     }
 
+    private int orgID;
     private ArrayList<MonoCreature> fusedWith = new ArrayList<MonoCreature>();
-
     private String dominantTrait;                                                                                       //The dom gene
     private String genotypeCharacter;                                                                                   //For comparing at the time of fusion
     private ArrayList<String> gene = new ArrayList<String>();                                                                //An arraylist that contains both the genes
@@ -27,9 +24,9 @@ public class MonoCreature {                                                     
     public MonoCreature(String characterGene1, String characterGene2) {                                                 //Constructor: Takes in a gene set (Gx2)
         this.gene.add(characterGene1);                                                                                  //Adds two Strings to gene arraylist
         this.gene.add(characterGene2);
-        orgID++;                                                                                                        //++ the id
         System.out.println("MonoCreature says this: ");
         System.out.println("Character genes initialized for " + orgID);
+        orgID++;
         boolean allSet = this.geneCheck();
         System.out.println("OK to proceed: " + allSet);
         if (!allSet) {
@@ -134,9 +131,5 @@ public class MonoCreature {                                                     
     protected boolean hasFusedWith(MonoCreature verifyThis) {
         boolean hasFused = !hasNotFusedWith(verifyThis);
         return hasFused;
-    }
-
-    protected int orgID() {
-        return orgID;
     }
 }
