@@ -7,8 +7,7 @@ public class MonoHybrid {
     int maxGenerations;
     private MonoCreature[] seeds = new MonoCreature[2];
     ArrayList<MonoCreature> bufferList = new ArrayList<MonoCreature>();
-    ArrayList<ArrayList<MonoCreature>> totalList = new ArrayList<ArrayList<MonoCreature>>(100);                         //just a sample value
-    MonoCreature[] creatureArray = new MonoCreature[100];
+    ArrayList<ArrayList<MonoCreature>> totalList = new ArrayList<ArrayList<MonoCreature>>();
     private int totalCreaturesTillNow = 0;
     public MonoHybrid(int generations) {
         this.maxGenerations = generations;
