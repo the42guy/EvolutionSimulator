@@ -57,14 +57,13 @@ public class MonoHybrid {
          * Fuses two parents' gametes to obtain 4 off-springs.
          * Working:
          *      Takes two MonoCreatures as arguments
-         *      Creates two ArrayLists, one for holding the gametes, other for the off-springs (ArrayList here contributed by @flamingrush2)
-         *      Then initializes the gametes ArrayList by enquiring about each gamete through the getGamete(int whichGamete) method
-         *      Now four creatures are created via these four gametes, and simultaneously added to the offSpring ArrayList
-         *      This ArrayList is then sent to buffer ArrayList
+         *      Creates two arrays, one for holding the gametes, other for the off-springs
+         *      Then initializes the gametes array by enquiring about each gamete through the getGamete(int whichGamete) method
+         *      Now four creatures are created via these four gametes, and simultaneously added to the offSpring array
+         *      This array is then sent to buffer ArrayList
          *      Both parent MonoCreatures get to add each other in their respective fused lists, to prevent future fuses
          *      total creature count is increased by 4 each run
          * */
-        //ArrayList<String> gametes = new ArrayList<String>(4);
         String[] gametes = new String[4];
         MonoCreature[] offSprings = new MonoCreature[4];
         for (int counter = 0; counter < 4; counter++) {
@@ -130,40 +129,5 @@ public class MonoHybrid {
             }
             this.dumpBufferToTotalList(f);
         }
-        /*int generationCount;
-        int f = this.maxGenerations;
-        ArrayList<MonoCreature> lastGenCreatures;
-        for (generationCount = 2; generationCount <= f; generationCount++) {
-            System.out.println("Entered inside the looper for creating generation " + generationCount);                 // <-- debug message
-            lastGenCreatures = totalList.get(generationCount - 1);                              //totalList is an AL of ALs. So this returns an AL.
-            int totalLengthOfLastGen = lastGenCreatures.size();                                                         //this is 0? Why?
-            System.out.println("Last gen's size: " + totalLengthOfLastGen);
-            int creatureOneLoc, creatureTwoLoc;
-            MonoCreature creatureOne, creatureTwo;
-            for (creatureOneLoc = 0; creatureOneLoc < totalLengthOfLastGen; creatureOneLoc++) {
-                System.out.print("For creatureOne at " + creatureOneLoc);
-                creatureOne = lastGenCreatures.get(creatureOneLoc);
-                for (creatureTwoLoc = 0; creatureTwoLoc < totalLengthOfLastGen; creatureTwoLoc++) {
-                    System.out.println(" and creatureTwo at " + creatureTwoLoc);
-                    creatureTwo = lastGenCreatures.get(creatureTwoLoc);
-                    if ((creatureOne.hasNotFusedWith(creatureTwo)) && (creatureOne != creatureTwo)) {
-                        System.out.println("    Both the creatures haven't fused previously, and are not the same");        // <-- debug message
-                        this.fuseTwo(creatureOne, creatureTwo);
-                    } else if (creatureOne == creatureTwo) {
-                        System.out.println("    Both creatures are same");
-                    } else if (creatureOne.hasFusedWith(creatureTwo)) {
-                        System.out.println("    Both creatures have fused");
-                    } else if (creatureOne.hasNotFusedWith(creatureTwo)) {
-                        System.out.println("    Both creatures have not fused");
-                    } else {
-                        System.out.println("    What happened?");                                                       // <-- always this happens, hasFusedWith() is buggy as well
-                        System.out.println("    Fused? " + creatureOne.hasFusedWith(creatureTwo) + ", " + creatureTwo.hasFusedWith(creatureOne));
-                        System.out.println("    Not fused? " + creatureOne.hasNotFusedWith(creatureTwo) + ", " + creatureTwo.hasNotFusedWith(creatureOne));
-                    }
-                } //ends the loop for second level creatures
-            } //ends the loop for first level creatures
-            this.dumpBufferToTotalList(generationCount);
-        } //ends total loop, the complete simulation
-        */
     }
 }
