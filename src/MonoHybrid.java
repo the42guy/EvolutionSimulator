@@ -66,7 +66,7 @@ public class MonoHybrid {
          * */
         String[] gametes = new String[4];
         MonoCreature[] offSprings = new MonoCreature[4];
-        for (int counter = 0; counter < 4; counter++) {
+        /*for (int counter = 0; counter < 4; counter++) {
             if ((counter == 0) || (counter == 1)) {
                 System.out.println("Counter is less than 2");
                 gametes[counter] = parentOne.getGamete(counter);
@@ -75,7 +75,11 @@ public class MonoHybrid {
                 gametes[counter] = parentTwo.getGamete(counter - 2);
             }
             System.out.println(" We have " + gametes[counter] + " at " + counter);
-        }
+        }*/
+        gametes[0] = parentOne.getGamete(0);
+        gametes[1] = parentOne.getGamete(1);
+        gametes[2] = parentTwo.getGamete(0);
+        gametes[3] = parentTwo.getGamete(1);
         offSprings[0] = new MonoCreature(gametes[0], gametes[2]);
         offSprings[1] = new MonoCreature(gametes[0], gametes[3]);
         offSprings[2] = new MonoCreature(gametes[1], gametes[2]);
