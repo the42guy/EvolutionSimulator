@@ -27,7 +27,7 @@ public class MonoHybrid {
     }
 
     protected void dumpBufferToTotalList(int whichIndex, ArrayList<MonoCreature> monoC) {                                                              //puts the complete content of the buffer to totalList
-        totalList.add(whichIndex, monoC);                                        // @TODO: fix this
+        totalList.add(whichIndex, monoC);
         System.out.println(" In dump method \nTotal list's this index's size: " + totalList.get(whichIndex).size());
         bufferList.clear();
         System.out.println("    Cleared the buffer\n    And now totalList's this index's size: " + totalList.get(whichIndex).size());
