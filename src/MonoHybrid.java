@@ -8,7 +8,7 @@ public class MonoHybrid {
     private MonoCreature[] seeds = new MonoCreature[2];
     ArrayList<MonoCreature> bufferList = new ArrayList<MonoCreature>();
     ArrayList<ArrayList<MonoCreature>> totalList = new ArrayList<ArrayList<MonoCreature>>();
-    private int totalCreaturesTillNow = 0;
+    private int totalCreaturesTillNow;
     public MonoHybrid(int generations) {
         this.maxGenerations = generations;
     }
@@ -17,34 +17,37 @@ public class MonoHybrid {
         seeds[1] = mc2;
         addToBuffer(seeds[0]);
         addToBuffer(seeds[1]);
-        dumpBufferToTotalList(0);
+        ArrayList<MonoCreature> aTempArray = (ArrayList<MonoCreature>) bufferList.clone();
+        dumpBufferToTotalList(aTempArray);
+        clearBuffer();
         this.fuseTwo(seeds[0], seeds[1]);
-        dumpBufferToTotalList(1);
+        ArrayList<MonoCreature> aTempArray2 = (ArrayList<MonoCreature>) bufferList.clone();
+        dumpBufferToTotalList(aTempArray2);
+        clearBuffer();
     }
-    protected void dumpBufferToTotalList(int whichIndex) {                                                              //puts the complete content of the buffer to totalList
-        /*ArrayList<MonoCreature> mcal = new ArrayList<MonoCreature>(bufferList);
-        for (int i = 0; i < bufferList.size(); i++) {
-            mcal.add(i, bufferList.get(i));
-        }*/
-        //Collections.copy(mcal, bufferList);
-        totalList.add(whichIndex, (ArrayList<MonoCreature>) bufferList.clone());                                        // @TODO: fix this
+
+    protected void dumpBufferToTotalList(int whichIndex, ArrayList<MonoCreature> monoC) {                                                              //puts the complete content of the buffer to totalList
+        totalList.add(whichIndex, monoC);                                        // @TODO: fix this
         System.out.println(" In dump method \nTotal list's this index's size: " + totalList.get(whichIndex).size());
-        /*for (int j = 0; j < bufferList.size(); j++) {
-            bufferList.remove(j);
-        }*/
         bufferList.clear();
         System.out.println("    Cleared the buffer\n    And now totalList's this index's size: " + totalList.get(whichIndex).size());
         System.out.println("    The buffer's size is " + bufferList.size());
         System.out.println("    totalList's size is " + totalList.size() + "\n");
     }
+
+    protected void dumpBufferToTotalList(ArrayList<MonoCreature> monoC) {
+        totalList.add(monoC);
+    }
     private void addToBuffer(MonoCreature aCreature) {                                                                  //adds the given creature to buffer
         bufferList.add(aCreature);
     }
 
+    private void clearBuffer() {
+        this.bufferList.clear();
+    }
     private ArrayList<MonoCreature> getGeneration(int generation) {
         return this.totalList.get(generation);
     }
-
     private void addToBuffer(MonoCreature creatureOne, MonoCreature creatureTwo, MonoCreature creatureThree, MonoCreature creatureFour) {   //possibly useless
         bufferList.add(creatureOne);
         bufferList.add(creatureTwo);
@@ -92,7 +95,6 @@ public class MonoHybrid {
         totalCreaturesTillNow += 4;
         System.out.println("Total creatures till now: " + totalCreaturesTillNow);
     }
-
     protected void generate() {
         /**
          * @javadoc
@@ -131,7 +133,9 @@ public class MonoHybrid {
                     }
                 }
             }
-            this.dumpBufferToTotalList(f);
+            ArrayList<MonoCreature> aTempBuffer = (ArrayList<MonoCreature>) bufferList.clone();
+            this.dumpBufferToTotalList(aTempBuffer);
+            this.clearBuffer();
         }
     }
 }
