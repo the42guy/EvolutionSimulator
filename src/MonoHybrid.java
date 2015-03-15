@@ -17,17 +17,17 @@ public class MonoHybrid {
         seeds[1] = mc2;
         addToBuffer(seeds[0]);
         addToBuffer(seeds[1]);
-        ArrayList<MonoCreature> aTempArray = (ArrayList<MonoCreature>) bufferList.clone();
-        dumpBufferToTotalList(aTempArray);
-        clearBuffer();
+        //ArrayList<MonoCreature> aTempArray = (ArrayList<MonoCreature>) bufferList.clone();
+        dumpBufferToTotalList(bufferList);
+        //clearBuffer();
         this.fuseTwo(seeds[0], seeds[1]);
-        ArrayList<MonoCreature> aTempArray2 = (ArrayList<MonoCreature>) bufferList.clone();
-        dumpBufferToTotalList(aTempArray2);
-        clearBuffer();
+        //ArrayList<MonoCreature> aTempArray2 = (ArrayList<MonoCreature>) bufferList.clone();
+        dumpBufferToTotalList(bufferList);
+        //clearBuffer();
     }
 
     protected void dumpBufferToTotalList(int whichIndex, ArrayList<MonoCreature> monoC) {                                                              //puts the complete content of the buffer to totalList
-        totalList.add(whichIndex, monoC);
+        totalList.add(whichIndex, (ArrayList<MonoCreature>) monoC.clone());
         System.out.println(" In dump method \nTotal list's this index's size: " + totalList.get(whichIndex).size());
         bufferList.clear();
         System.out.println("    Cleared the buffer\n    And now totalList's this index's size: " + totalList.get(whichIndex).size());
