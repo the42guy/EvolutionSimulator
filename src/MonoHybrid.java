@@ -124,7 +124,7 @@ public class MonoHybrid {
                 for (creatureTwoLoc = 0; creatureTwoLoc < maxLengthLastGen; creatureTwoLoc++) {
                     System.out.println("      For c-2 loc = " + creatureTwoLoc);
                     MonoCreature creatureTwo = lastGenCreatures.get(creatureTwoLoc);
-                    if ((creatureOneLoc != creatureTwoLoc) && ((creatureOne.hasNotFusedWith(creatureTwo)) || (creatureTwo.hasNotFusedWith(creatureOne)))) {
+                    if ((creatureOneLoc != creatureTwoLoc) && ((creatureOne.hasNotFusedWith(creatureTwo)) && (creatureTwo.hasNotFusedWith(creatureOne)))) {
                         this.fuseTwo(creatureOne, creatureTwo);
                     } else if (creatureOneLoc == creatureTwoLoc) {
                         System.out.println("        The creatures are same");
@@ -136,6 +136,7 @@ public class MonoHybrid {
             ArrayList<MonoCreature> aTempBuffer = (ArrayList<MonoCreature>) bufferList.clone();
             this.dumpBufferToTotalList(aTempBuffer);
             this.clearBuffer();
+            System.out.println("This generation's size: " + totalList.get(f).size());
         }
     }
 }
